@@ -22,30 +22,56 @@
 }
 %end
 
-%hook _UIStatusBarVisualProvider_iOS
-+ (Class)class {
-    return NSClassFromString(@"_UIStatusBarVisualProvider_Split58");
+// Restore screenshot shortcut
+%hook SpringBoard
+- (void)applicationDidFinishLaunching:(id)arg1 {
+	applicationDidFinishLaunching = 2;
+	%orig;
 }
 %end
-%hook UIStatusBarWindow
-+ (void)setStatusBar:(Class)arg1 {
-    %orig(NSClassFromString(@"UIStatusBar_Modern"));
+%hook SBPressGestureRecognizer
+- (void)setAllowedPressTypes:(NSArray *)arg1 {
+	NSArray * lockHome = @[@104, @101];
+	NSArray * lockVol = @[@104, @102, @103];
+	if ([arg1 isEqual:lockVol] && applicationDidFinishLaunching == 2) {
+		%orig(lockHome);
+		applicationDidFinishLaunching--;
+		return;
+	}
+	%orig;
+}
+%end
+%hook SBClickGestureRecognizer
+- (void)addShortcutWithPressTypes:(id)arg1 {
+	if (applicationDidFinishLaunching == 1) {
+		applicationDidFinishLaunching--;
+		return;
+	}
+	%orig;
+}
+%end
+%hook SBHomeHardwareButton
+- (id)initWithScreenshotGestureRecognizer:(id)arg1 homeButtonType:(long long)arg2 buttonActions:(id)arg3 gestureRecognizerConfiguration:(id)arg4 {
+	return %orig(arg1, _homeButtonType, arg3, arg4);
+}
+- (id)initWithScreenshotGestureRecognizer:(id)arg1 homeButtonType:(long long)arg2 {
+	return %orig(arg1, _homeButtonType);
+}
+%end
+// Restore button to invoke Siri
+%hook SBLockHardwareButtonActions
+- (id)initWithHomeButtonType:(long long)arg1 proximitySensorManager:(id)arg2 {
+	return %orig(_homeButtonType, arg2);
+}
+%end
+%hook SBHomeHardwareButtonActions
+- (id)initWitHomeButtonType:(long long)arg1 {
+	return %orig(_homeButtonType);
 }
 %end
 
-%hook UIStatusBar_Base
-+ (Class)_implementationClass {
-    return NSClassFromString(@"UIStatusBar_Modern");
+%hook MTLumaDodgePillView
+- (id)initWithFrame:(struct CGRect)arg1 {
+      return NULL;
 }
-+ (void)_setImplementationClass:(Class)arg1 {
-    %orig(NSClassFromString(@"UIStatusBar_Modern"));
-}
-%end
-//FUgap, credit to smokin1337
-%hook CCUIHeaderPocketView
-  //Hide Header Blur
-  -(void)setBackgroundAlpha:(double)arg1{
-      arg1 = 0.0;
-      %orig;
-  }
 %end
