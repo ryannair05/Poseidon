@@ -22,6 +22,12 @@
 }
 %end
 
+%hook _UIStatusBarVisualProvider_iOS
++ (Class)class {
+    return NSClassFromString(@"_UIStatusBarVisualProvider_Split58");
+}
+%end
+
 %hook UIStatusBar_Base
 + (Class)_implementationClass {
     return NSClassFromString(@"UIStatusBar_Modern");
