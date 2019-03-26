@@ -49,3 +49,13 @@
       %orig;
   }
 %end
+
+%hook CCUIHeaderPocketView
+- (void)layoutSubviews {
+    %orig;
+
+    CGRect _frame = self.frame;
+    _frame.origin.y = -10;
+    self.frame = _frame;
+}
+%end
