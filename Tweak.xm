@@ -29,9 +29,6 @@
 %end
 
 %hook UIStatusBar_Base
-+ (Class)_implementationClass {
-    return NSClassFromString(@"UIStatusBar_Modern");
-}
 + (void)_setImplementationClass:(Class)arg1 {
     %orig(NSClassFromString(@"UIStatusBar_Modern"));
 }
