@@ -1,4 +1,5 @@
-#GesturesXS
+##GesturesXS
+
 Enable iPhone X home gestures on other iOS 12 devices.
 
 ## Features
