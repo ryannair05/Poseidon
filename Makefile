@@ -1,7 +1,7 @@
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME = Poseidon
-Poseidon_FILES = Tweak.xm
+TWEAK_NAME = GesturesXS
+GesturesXS_FILES = Tweak.xm
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 
