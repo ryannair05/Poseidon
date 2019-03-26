@@ -28,6 +28,15 @@
 }
 %end
 
+%hook UIStatusBar_Base
++ (Class)_implementationClass {
+    return NSClassFromString(@"UIStatusBar_Modern");
+}
++ (void)_setImplementationClass:(Class)arg1 {
+    %orig(NSClassFromString(@"UIStatusBar_Modern"));
+}
+%end
+
 //FUgap, credit to smokin1337
 %hook CCUIHeaderPocketView
   //Hide Header Blur
@@ -36,4 +45,3 @@
       %orig;
   }
 %end
-
