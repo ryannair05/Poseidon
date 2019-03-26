@@ -27,11 +27,6 @@
     return NSClassFromString(@"_UIStatusBarVisualProvider_Split58");
 }
 %end
-%hook UIStatusBarWindow
-+ (void)setStatusBar:(Class)arg1 {
-    %orig(NSClassFromString(@"UIStatusBar_Modern"));
-}
-%end
 
 %hook UIStatusBar_Base
 + (Class)_implementationClass {
@@ -41,6 +36,7 @@
     %orig(NSClassFromString(@"UIStatusBar_Modern"));
 }
 %end
+
 //FUgap, credit to smokin1337
 %hook CCUIHeaderPocketView
   //Hide Header Blur
@@ -50,12 +46,3 @@
   }
 %end
 
-%hook CCUIHeaderPocketView
-- (void)layoutSubviews {
-    %orig;
-
-    CGRect _frame = self.frame;
-    _frame.origin.y = -10;
-    self.frame = _frame;
-}
-%end
