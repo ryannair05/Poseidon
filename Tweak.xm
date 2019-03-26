@@ -6,9 +6,16 @@
 %end
 
 // Hide home bar
+@interface MTLumaDodgePillView : UIView
+@end
 %hook MTLumaDodgePillView
 - (id)initWithFrame:(struct CGRect)arg1 {
 	return NULL;
+}
+%end
+%hook UIViewController
+- (BOOL)prefersHomeIndicatorAutoHidden {
+    return YES;
 }
 %end
 
