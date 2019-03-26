@@ -76,9 +76,3 @@
 	return %orig(_homeButtonType);
 }
 %end
-
-%hook MTLumaDodgePillView
-- (id)initWithFrame:(struct CGRect)arg1 {
-      return NULL;
-}
-%end
