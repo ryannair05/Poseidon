@@ -37,10 +37,6 @@
 }
 %end
 
-%hook _UIStatusBar
-        return %orig - 10;
-%end 
-
 //FUgap, credit to smokin1337
 %hook CCUIHeaderPocketView
   //Hide Header Blur
