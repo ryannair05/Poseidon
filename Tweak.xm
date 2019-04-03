@@ -46,15 +46,28 @@
   }
 %end
 
-%hook UIScrollView
-	%init(Mostapps);
-%end
+%hook SpringBoard
+// Disable Gestures When Keyboard is Visible
+		[[NSNotificationCenter defaultCenter] addObserver:self
+                                         		selector:@selector(keyboardDidShow:)
+                                             		name:UIKeyboardDidShowNotification
+                                           		object:nil];
 
-%group Mostapps
+		[[NSNotificationCenter defaultCenter] addObserver:self
+                                         selector:@selector(keyboardDidHide:)
+                                             name:UIKeyboardDidHideNotification
+                                           object:nil];
+			
 
-%hook UIViewController
-	- (BOOL)prefersStatusBarHidden{
-   	 return YES;
+%new
+-(void)keyboardDidShow:(NSNotification *)sender
+{
+    homeEnable = NO;
 }
-%end
+
+%new
+-(void)keyboardDidHide:(NSNotification *)sender
+{
+    homeEnable = YES;
+}
 %end
