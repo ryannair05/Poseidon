@@ -45,16 +45,3 @@
       %orig;
   }
 %end
-
-%hook UIScrollView
-	%init(Mostapps);
-%end
-
-%group Mostapps
-
-%hook UIViewController
-	- (BOOL)prefersStatusBarHidden{
-   	 return YES;
-}
-%end
-%end
