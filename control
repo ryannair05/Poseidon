@@ -1,7 +1,7 @@
 Package: com.ryannair05.poseidon
 Name: Poseidon
 Depends: mobilesubstrate
-Version: 2.0.0
+Version: 2.2.0
 Architecture: iphoneos-arm
 Description: iPhone X gestures and buttons.
 Maintainer: Ryan Nair

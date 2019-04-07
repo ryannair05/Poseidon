@@ -22,9 +22,18 @@
 }
 %end
 
+//FUgap, credit to smokin1337
+%hook CCUIHeaderPocketView
+  //Hide Header Blur
+  -(void)setBackgroundAlpha:(double)arg1{
+      arg1 = 0.0;
+      %orig;
+  }
+%end
+
 %hook _UIStatusBarVisualProvider_iOS
 + (Class)class {
-    return NSClassFromString(@"_UIStatusBarVisualProvider_Split58");
+	return NSClassFromString(@"_UIStatusBarVisualProvider_Split58"); 
 }
 %end
 
@@ -37,11 +46,12 @@
 }
 %end
 
-//FUgap, credit to smokin1337
-%hook CCUIHeaderPocketView
-  //Hide Header Blur
-  -(void)setBackgroundAlpha:(double)arg1{
-      arg1 = 0.0;
-      %orig;
-  }
+@interface _UIStatusBarVisualProvider_iOS : NSObject
++ (CGSize)intrinsicContentSizeForOrientation:(NSInteger)orientation;
+@end
+
+%hook _UIStatusBar
++ (CGFloat)heightForOrientation:(NSInteger)orientation {
+		return ([NSClassFromString(@"_UIStatusBarVisualProvider_Modern") intrinsicContentSizeForOrientation:orientation].height + 25);
+	}
 %end
