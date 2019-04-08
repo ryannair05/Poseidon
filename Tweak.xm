@@ -46,12 +46,8 @@
 }
 %end
 
-@interface _UIStatusBarVisualProvider_iOS : NSObject
-+ (CGSize)intrinsicContentSizeForOrientation:(NSInteger)orientation;
-@end
-
 %hook _UIStatusBar
 + (CGFloat)heightForOrientation:(NSInteger)orientation {
-		return ([NSClassFromString(@"_UIStatusBarVisualProvider_Modern") intrinsicContentSizeForOrientation:orientation].height + 25);
+		return %orig - 10;
 	}
 %end
