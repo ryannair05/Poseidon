@@ -5,6 +5,7 @@ Enable iPhone X home gestures on other iOS 12 devices.
 * iPhone X home and multitasking gestures.
 * Home Bar hidden.
 * iPhone X button gestures for screenshot and Siri.
+* iPhone X Keyboard (With Barmoji Support)
 
 
 ## Building
@@ -20,5 +21,4 @@ Poseidon is forked from tweaks such as [HomeGesture Lite by MidnightChips](https
 
 ## Credits
 duraidabdul- Neptune
-
 smokin1337 - FUGap
