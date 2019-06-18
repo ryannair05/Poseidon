@@ -1,9 +1,10 @@
 Package: com.ryannair05.poseidon
 Name: LittleXS
 Depends: mobilesubstrate
-Version: 2.9.0
 Architecture: iphoneos-arm
 Description: iPhone X gestures, buttons, statusbar, and keyboard.
 Maintainer: Ryan Nair
 Author: Ryan Nair
 Section: Tweaks
+Version: 2.9.0
+Installed-Size: 56
